@@ -70,6 +70,7 @@ public class  Test1{
 @Test
     public void test1() throws InterruptedException {
     driver.navigate().to("https://jobs.zalando.com/");
+    Thread.sleep(4000);
     JobsPage jobsPage = new JobsPage(driver);
     ResultPage resultPage=  jobsPage.selectLocation("Berlin").enterRoleText("Test Analyst").clickSearchButton().clickFilterJobs().checkContractType();
     Assert.assertTrue(resultPage.isJobDescriptionAvailable("Test Analyst for External Applications"));
