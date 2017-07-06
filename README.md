@@ -30,6 +30,7 @@ a.	Finding a job using the ‘Frontend Engineer’ as the search criteria and de
 1.	Page object pattern is used for a clean separation between test code and locators.
 2.	Test1- ‘AssertTrue’ and ‘AssertEquals’ have been used to verify the search criterion.
 3.	Test2- ‘AssertFalse’ has been used to define the success criteria ‘Frontend Engineer’ as it does not match the result on the webpage.
+4.  Thread.sleep has been added solely for testing purposes.
 
 **Running the tests:**
 
