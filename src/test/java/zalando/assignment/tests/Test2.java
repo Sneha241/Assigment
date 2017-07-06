@@ -9,8 +9,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import zalando.assignment.pageobjects.BasePage;
 import zalando.assignment.pageobjects.JobsPage;
 import zalando.assignment.pageobjects.ResultPage;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -62,9 +64,11 @@ public class Test2 {
     @Test
     public void test2() throws InterruptedException {
         driver.navigate().to("https://jobs.zalando.com/");
+        //driver.manage().window().maximize();
         JobsPage jobsPage = new JobsPage(driver);
-        ResultPage resultPage=  jobsPage.selectLocation("Berlin").enterRoleText("Frontend Engineer").clickSearchButton().clickFilterJobs().checkContractType();
+        ResultPage resultPage=  jobsPage.selectLocation("All locations").enterRoleText("Frontend Engineer").clickSearchButton();
         Assert.assertFalse(resultPage.isJobDescriptionAvailable("Frontend Engineer"));
+
 
     }
 

@@ -1,14 +1,10 @@
 package zalando.assignment.tests;
 import org.apache.commons.lang3.SystemUtils;
-import org.junit.After;
-import org.junit.Before;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -19,7 +15,7 @@ import zalando.assignment.pageobjects.ResultPage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
+
 /**
  * Created by sneha.rao on 7/3/2017.
  */
@@ -68,14 +64,14 @@ public class  Test1{
 
 
 @Test
-    public void test1() throws InterruptedException {
-    driver.navigate().to("https://jobs.zalando.com/");
-    Thread.sleep(4000);
+    public void test1()  throws InterruptedException {
+    driver.navigate().to("https://jobs.zalando.com/");      //Takes user to this URL
     JobsPage jobsPage = new JobsPage(driver);
     ResultPage resultPage=  jobsPage.selectLocation("Berlin").enterRoleText("Test Analyst").clickSearchButton().clickFilterJobs().checkContractType();
-    Assert.assertTrue(resultPage.isJobDescriptionAvailable("Test Analyst for External Applications"));
+    jobsPage.scrollDownwards();
+    Assert.assertTrue(resultPage.isJobDescriptionAvailable("Test Analyst for External Applications")); //checks if it is present
     Assert.assertEquals(resultPage.getJobCategoryForTheDesiredRole("Test Analyst for External Applications"),"Technology & UX/UI Design");
-    Assert.assertEquals(resultPage.getJoblocationForTheDesiredRole("Test Analyst for External Applications"),"Berlin");
+    Assert.assertEquals(resultPage.getJoblocationForTheDesiredRole("Test Analyst for External Applications"), "Berlin");
 
 }
 

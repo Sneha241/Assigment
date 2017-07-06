@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by sneha.rao on 7/3/2017.
  */
-public class ResultPage {
+public class ResultPage  extends BasePage{
 
     @FindBy(how=How.CSS, using = "[class='button -layout-block -color-orange']")
     private WebElement filterJobsButton;
@@ -33,10 +33,10 @@ public class ResultPage {
     @FindAll(@FindBy(how = How.CSS, using = "[class='card--job-result__locations-container']"))
     private List<WebElement> jobLocation;
 
+
+
     private  String jobCategoryOfSelectedDescription;
     private String  jobLocationOfSelectedDescription;
-
-
 
 
 
@@ -45,33 +45,30 @@ public class ResultPage {
     private WebDriver driver;
 
     public ResultPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
+
+
+
     public ResultPage clickFilterJobs() throws InterruptedException {
-        Thread.sleep(3000);
+
+        waitForElement(filterJobsButton);
         Actions actions = new Actions (driver);
         actions.moveToElement(filterJobsButton).click().perform();
         return this;
     }
 
-    public ResultPage checkContractType(){
-          checkFullTime.click();
-          return this;
-    }
-
-
-    public ResultPage getAllSerachTitlesDisplayed()
-    {
-        for(int i=0; i < jobTitles.size(); i++)
-        {
-            System.out.println(jobTitles.get(i).getText());
+    public ResultPage checkContractType() throws InterruptedException{
+            checkFullTime.click();
+            Thread.sleep(2000);
+            return this;
         }
 
-        return this;
 
-    }
+
 
 
     public Boolean isJobDescriptionAvailable(String jobDescription)
@@ -97,6 +94,7 @@ public class ResultPage {
         {
             if(jobTitles.get(i).getText().equalsIgnoreCase(jobDescription))
             {
+
                 jobCategoryOfSelectedDescription = jobCategory.get(i).getText();
                 break;
             }
